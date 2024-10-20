@@ -10,7 +10,7 @@ Feature: Add employee to HRMS
     Then user is navigated to add employee page
     And user sees unique employee ID populated in the employee Id field
 
-  @addEmp @WithoutProvidingID
+  @addEmp @withoutProvidingID
   Scenario: Add Employee without providing Employee Id
     When user enters firstname middlename and lastname in the name fields
     And user clicks on save button

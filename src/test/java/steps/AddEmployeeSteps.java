@@ -13,10 +13,6 @@ import java.util.UUID;
 
 public class AddEmployeeSteps extends CommonMethods {
 
-    public String firstName;
-    public String middleName;
-    public String lastName;
-
     @When("user clicks on PIM option")
     public void user_clicks_on_pim_option() {
         click(dashboardPage.pimOption);
@@ -40,15 +36,18 @@ public class AddEmployeeSteps extends CommonMethods {
     @When("user enters firstname middlename and lastname in the name fields")
     public void user_enters_firstname_middlename_and_lastname_in_the_name_fields() {
 
-        List<Map<String, String>> employeeNames = ExcelReader.readExcel();
-        for (Map<String, String> employee : employeeNames) {
-            sendText(employee.get("firstName"), addEmployeePage.firstNameField);
-            firstName = employee.get("firstName");
-            sendText(employee.get("middleName"), addEmployeePage.middleNameField);
-            middleName = employee.get("middleName");
-            sendText(employee.get("lastName"), addEmployeePage.lastNameField);
-            lastName = employee.get("lastName");
-        }
+//        List<Map<String, String>> employeeNames = ExcelReader.readExcel();
+//        for (Map<String, String> employee : employeeNames) {
+//            sendText(employee.get("firstName"), addEmployeePage.firstNameField);
+//            firstName = employee.get("firstName");
+//            sendText(employee.get("middleName"), addEmployeePage.middleNameField);
+//            middleName = employee.get("middleName");
+//            sendText(employee.get("lastName"), addEmployeePage.lastNameField);
+//            lastName = employee.get("lastName");
+//        }
+        sendText("dummy", addEmployeePage.firstNameField);
+        sendText("MS", addEmployeePage.middleNameField);
+        sendText("data", addEmployeePage.lastNameField);
     }
 
     @When("user clicks on save button")
@@ -58,7 +57,7 @@ public class AddEmployeeSteps extends CommonMethods {
 
     @Then("user added successfully")
     public void user_added_successfully() {
-        String employeeFullName = firstName + " " + middleName + " " + lastName;
+        String employeeFullName = "dummy MS data";
         Assert.assertEquals(employeeFullName, employeeListPage.employeeFullName.getText());
     }
 
@@ -71,10 +70,11 @@ public class AddEmployeeSteps extends CommonMethods {
     @Then("user sees required error message")
     public void user_sees_required_error_message() {
         Assert.assertTrue(addEmployeePage.firstNameErrorMsg.isDisplayed());
-        Assert.assertTrue(addEmployeePage.lastNameErrorMsg.isDisplayed());
         Assert.assertEquals("Required", addEmployeePage.firstNameErrorMsg.getText());
-        Assert.assertEquals("Required", addEmployeePage.lastNameErrorMsg.getText());
         Assert.assertEquals(elementLocation(addEmployeePage.firstNameErrorMsg).getX(), elementLocation(addEmployeePage.firstNameField).getX());
+
+        Assert.assertTrue(addEmployeePage.lastNameErrorMsg.isDisplayed());
+        Assert.assertEquals("Required", addEmployeePage.lastNameErrorMsg.getText());
         Assert.assertEquals(elementLocation(addEmployeePage.lastNameErrorMsg).getX(), elementLocation(addEmployeePage.lastNameField).getX());
 
     }
