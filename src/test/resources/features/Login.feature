@@ -8,21 +8,21 @@ Feature: Login Validation for HRMs Portal
     When user attempts to login with an empty username field
     And user clicks on login button
     Then user sees error message "Username cannot be empty"
-    And error message is clearly visible near the respective field
+    And error message is clearly visible near the "userName" field
 
   @emptyPasswordLogin @invalidLogin
   Scenario:  Login with an empty password field
     When user attempts to login with an empty password field
     And user clicks on login button
     Then user sees error message "Password is empty"
-    And error message is clearly visible near the respective field
+    And error message is clearly visible near the "password" field
 
   @invalidCredLogin @invalidLogin
   Scenario Outline: Login with incorrect credentials
     When user attempts to login with an incorrect "<userName>" or "<password>"
     And user clicks on login button
     Then user sees error message "Invalid credentials"
-    And error message is clearly visible near the respective field
+    And error message is clearly visible near the "loginButton" field
     Examples:
       | userName | password      |
       | admi     | Hum@nhrm123   |

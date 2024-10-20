@@ -27,15 +27,16 @@ public class LoginSteps extends CommonMethods {
         click(loginPage.loginButton);
     }
 
-//    @Then("user sees Username cannot be empty error message")
-//    public void user_sees_username_cannot_be_empty_error_message() {
-//        Assert.assertEquals("Username cannot be empty", loginPage.errorMessage.getText());
-//    }
-
-    @Then("error message is clearly visible near the respective field")
-    public void error_message_is_clearly_visible_near_the_respective_field() {
+    @Then("error message is clearly visible near the {string} field")
+    public void error_message_is_clearly_visible_near_the_field(String field) {
         Assert.assertTrue(loginPage.errorMessage.isDisplayed());
-        Assert.assertTrue(elementLocation(loginPage.errorMessage).getY()>elementLocation(loginPage.userNameField).getY());
+        if(field.equals("userName")) {
+            Assert.assertTrue(elementLocation(loginPage.errorMessage).getY()<elementLocation(loginPage.passwordField).getY());
+        }else if(field.equals("password")){
+            Assert.assertTrue(elementLocation(loginPage.errorMessage).getY()<elementLocation(loginPage.loginButton).getY());
+        }else{
+            Assert.assertTrue(elementLocation(loginPage.errorMessage).getY()>elementLocation(loginPage.loginButton).getY());
+        }
     }
 
     @When("user attempts to login with an empty password field")
@@ -43,11 +44,6 @@ public class LoginSteps extends CommonMethods {
         sendText(ConfigReader.read("userName"), loginPage.userNameField);
         sendText("", loginPage.passwordField);
     }
-
-//    @Then("user sees Password is empty error message")
-//    public void user_sees_password_is_empty_error_message() {
-//        Assert.assertEquals("Password is empty", loginPage.errorMessage.getText());
-//    }
 
     @When("user attempts to login with an incorrect {string} or {string}")
     public void user_attempts_to_login_with_an_incorrect_or(String userName, String password) {
