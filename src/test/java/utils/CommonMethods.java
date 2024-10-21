@@ -59,11 +59,6 @@ public class CommonMethods extends PageInitializer {
         element.sendKeys(text);
     }
 
-    public Point elementLocation(WebElement element){
-        Point location = element.getLocation();
-        return location;
-    }
-
     public void click(WebElement element){
         waitForElementToBeClickable(element);
         element.click();

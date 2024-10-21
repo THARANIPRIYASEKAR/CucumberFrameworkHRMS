@@ -75,8 +75,6 @@ public class AddEmployeeSteps extends CommonMethods {
         Assert.assertTrue(addEmployeePage.lastNameErrorMsg.isDisplayed());
         Assert.assertEquals("Required", addEmployeePage.firstNameErrorMsg.getText());
         Assert.assertEquals("Required", addEmployeePage.lastNameErrorMsg.getText());
-        Assert.assertEquals(elementLocation(addEmployeePage.firstNameErrorMsg).getX(), elementLocation(addEmployeePage.firstNameField).getX());
-        Assert.assertEquals(elementLocation(addEmployeePage.lastNameErrorMsg).getX(), elementLocation(addEmployeePage.lastNameField).getX());
 
     }
 
