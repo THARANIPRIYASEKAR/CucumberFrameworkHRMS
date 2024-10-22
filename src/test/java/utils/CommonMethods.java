@@ -95,25 +95,16 @@ public class CommonMethods extends PageInitializer {
     }
 
     public String uniqueId() {
-//        String generateUUIDNo = String.format("%010d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16));
-//        String unique_no = generateUUIDNo.substring(generateUUIDNo.length() - 10);
-//        return unique_no;
-        int min=100000;
-        int max=1000000;
-        int unique_no=(int)(Math.random() * (max - min) + min);
+        int min = 100000;
+        int max = 1000000;
+        int unique_no = (int) (Math.random() * (max - min) + min);
         return String.valueOf(unique_no);
+
+        //alternative method
+        //String generateUUIDNo = String.format("%010d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16));
+        //String unique_no = generateUUIDNo.substring(generateUUIDNo.length() - 10);
+        //return unique_no
     }
 
-    public String addEmployeeErrorMessage(String inputField) {
-
-        String errorMessage = switch (inputField) {
-            case "firstName" -> addEmployeePage.firstNameErrorMsg.getText();
-            case "lastName" -> addEmployeePage.lastNameErrorMsg.getText();
-            case "userName" -> addEmployeePage.userNameErrorMsg.getText();
-            case "password" -> addEmployeePage.userPasswordErrorMsg.getText();
-            default -> null;
-        };
-        return errorMessage;
-    }
 }
 
