@@ -1,5 +1,6 @@
 package pages;
 
+import org.apache.poi.xwpf.usermodel.Document;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -33,6 +34,12 @@ public class AddEmployeePage extends CommonMethods {
 
     @FindBy(xpath = "//span[@for='lastName']")
     public WebElement lastNameErrorMsg;
+
+    @FindBy(xpath = "//span[@for='user_name']")
+    public WebElement userNameErrorMsg;
+
+    @FindBy(xpath = "//span[@for='user_password']")
+    public WebElement userPasswordErrorMsg;
 
     @FindBy(xpath = "//div[@class='message warning fadable']")
     public WebElement existingEmpIdErrorMsg;
