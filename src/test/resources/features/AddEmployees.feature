@@ -14,14 +14,15 @@ Feature: Add employee to HRMS
   Scenario: Add Employee without providing Employee Id
     When user enters firstname middlename and lastname in the name fields
     And user clicks on save button
-    Then user added successfully
+    Then employee added successfully
+    And employee details are verified from backend
 
   @addEmp @provideUniqueEmpId
   Scenario: Add Employee by providing unique Employee Id
     When user enters firstname middlename and lastname in the name fields
     And user enters unique employee Id
     And user clicks on save button
-    Then user added successfully
+    Then employee added successfully
 
   @addEmp @incompleteDetails
   Scenario Outline: Add Employee with incomplete details
