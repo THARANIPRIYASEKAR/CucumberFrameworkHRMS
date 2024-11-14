@@ -48,9 +48,9 @@ public class AddEmployeePage extends CommonMethods {
         PageFactory.initElements(driver, this);
     }
 
-    public String addEmployeeErrorMessage(String inputField) {
+    public String addEmployeeErrorMessage(String incompleteField) {
 
-        String errorMessage = switch (inputField) {
+        String errorMessage = switch (incompleteField) {
             case "firstName" -> firstNameErrorMsg.getText();
             case "lastName" -> lastNameErrorMsg.getText();
             case "userName" -> userNameErrorMsg.getText();

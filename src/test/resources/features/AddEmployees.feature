@@ -28,11 +28,11 @@ Feature: Add employee to HRMS
   Scenario Outline: Add Employee with incomplete details
     When user enters incomplete "<firstName>" "<middleName>" "<lastName>"
     And user clicks on save button
-    Then user sees "<errorMessage>" on the "<missingField>"
+    Then user sees "<errorMessage>" on the incomplete field
     Examples:
-      | firstName | middleName | lastName | errorMessage |missingField|
-      |           | MS         | data     | Required     |firstName   |
-      | dummy     |            |          | Required     |lastName    |
+      | firstName | middleName | lastName | errorMessage |
+      |           | MS         | data     | Required     |
+      | dummy     |            |          | Required     |
 
 
   @addEmp @invalidDetails

@@ -95,11 +95,18 @@ public class AddEmployeeSteps extends CommonMethods {
         sendText(firstName, addEmployeePage.firstNameField);
         sendText(middleName, addEmployeePage.middleNameField);
         sendText(lastName, addEmployeePage.lastNameField);
+
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
     }
 
-    @Then("user sees {string} on the {string}")
-    public void user_sees_on_entering_incomplete_details(String errorMessage, String missingField) {
-        Assert.assertEquals(errorMessage, addEmployeePage.addEmployeeErrorMessage(missingField));
+    @Then("user sees {string} on the incomplete field")
+    public void user_sees_on_the_incomplete_field(String errorMessage) {
+        String incompleteField="";
+        if (firstName.isBlank()) { incompleteField = "firstName"; }
+        else if (lastName.isBlank()) { incompleteField = "lastName"; }
+        Assert.assertEquals(errorMessage, addEmployeePage.addEmployeeErrorMessage(incompleteField));
     }
 
     @When("user enters existing employee ID {string}")

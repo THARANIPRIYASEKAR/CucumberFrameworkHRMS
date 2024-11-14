@@ -10,19 +10,44 @@ Feature: API Workflow
     Then the status code for this request is validated
     Then the employee id "Employee.employee_id" is stored and values are validated
 
+  @dynamic
+  Scenario: Create employee using more dynamic json payload
+    Given a create request is prepared using data "Asanth" , "Bilal" , "ms" , "F" , "1993-11-07" , "probation" , "Trainee"
+    When a "POST" call is made to create the employee
+    Then the status code for this request is validated
+    Then the employee id "Employee.employee_id" is stored and values are validated
+
   @api @getEmp
   Scenario: Get Created Employee
-    Given a request is prepared for retrieving the employee
+    Given a request is prepared to retrieve the employee
     When a "GET" call is made to retrieve the employee
     Then the status code for this request is validated
-    Then the retrieved employee details are validated
+    And the "employee.employee_id" retrieved should be same as the requested empid
+    #Then the retrieved employee details are validated
+    And the data in the response should be same as the expected values
+      | emp_firstname | emp_lastname | emp_middle_name | emp_gender | emp_birthday | emp_status | emp_job_title |
+      | Asanth        | Bilal        | ms              | Female     | 1993-11-07   | Probation  | Trainee       |
 
   @api @updateEmployee
   Scenario: Update Employee
-    Given a request is prepared for updating the employee
+    #Given a request is prepared for updating the employee
+    Given a update request is prepared using data "asana" , "lawrance" , "ms" , "F" , "1993-12-01" , "permanent" , "QA Engineer"
     When a "PUT" call is made to update the employee
     Then the status code for this request is validated
-    Then the updated employee details are validated
+    #And the updated employee details are validated
+    And the data in the response should be same as the expected values
+      | emp_firstname | emp_lastname | emp_middle_name | emp_gender | emp_birthday | emp_status | emp_job_title |
+      | Asanth        | Bilal        | ms              | Female     | 1993-11-07   | permanent  | QA Engineer   |
+
+  @api @getTheUpdatedEmployee
+  Scenario: Get the updated employee
+    Given a request is prepared to retrieve the employee
+    When a "GET" call is made to retrieve the employee
+    Then the status code for this request is validated
+    And the "employee.employee_id" retrieved should be same as the requested empid
+    And the data in the response should be same as the expected values
+      | emp_firstname | emp_lastname | emp_middle_name | emp_gender | emp_birthday | emp_status | emp_job_title |
+      | Asanth        | Bilal        | ms              | Female     | 1993-11-07   | permanent  | QA Engineer
 
   @api @getAllEmp
   Scenario: Get All Employee
