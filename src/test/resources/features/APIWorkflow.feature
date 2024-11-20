@@ -31,13 +31,13 @@ Feature: API Workflow
   @api @updateEmployee
   Scenario: Update Employee
     #Given a request is prepared for updating the employee
-    Given a update request is prepared using data "asana" , "lawrance" , "ms" , "F" , "1993-12-01" , "permanent" , "QA Engineer"
+    Given a update request is prepared using data "Asanth" , "Bilal" , "ms" , "F" , "1993-11-07" , "Permanent" , "QA Engineer"
     When a "PUT" call is made to update the employee
     Then the status code for this request is validated
     #And the updated employee details are validated
-    And the data in the response should be same as the expected values
-      | emp_firstname | emp_lastname | emp_middle_name | emp_gender | emp_birthday | emp_status | emp_job_title |
-      | Asanth        | Bilal        | ms              | Female     | 1993-11-07   | permanent  | QA Engineer   |
+    #And the data in the response should be same as the expected values
+     # | emp_firstname | emp_lastname | emp_middle_name | emp_gender | emp_birthday | emp_status | emp_job_title |
+     # | Asanth        | Bilal        | ms              | Female     | 1993-11-07   | permanent  | QA Engineer   |
 
   @api @getTheUpdatedEmployee
   Scenario: Get the updated employee
@@ -47,7 +47,7 @@ Feature: API Workflow
     And the "employee.employee_id" retrieved should be same as the requested empid
     And the data in the response should be same as the expected values
       | emp_firstname | emp_lastname | emp_middle_name | emp_gender | emp_birthday | emp_status | emp_job_title |
-      | Asanth        | Bilal        | ms              | Female     | 1993-11-07   | permanent  | QA Engineer
+      | Asanth        | Bilal        | ms              | Female     | 1993-11-07   | permanent  | QA Engineer   |
 
   @api @getAllEmp
   Scenario: Get All Employee

@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 
         features = "src/test/resources/features",
         glue = "APISteps",
-        dryRun = true,
-        tags = "@createEmp or @updateEmployee or @getTheUpdatedEmployee",
+        dryRun = false,
+        tags = "@dynamic or @updateEmployee or @getTheUpdatedEmployee",
         plugin = {"pretty", "html:target/cucumber.html", "json:target/cucumber.json",
                 "rerun:target/failed.txt"}
 )
